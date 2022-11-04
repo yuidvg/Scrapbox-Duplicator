@@ -1,3 +1,6 @@
+# Scrapbox-Duplicator on GitHub Actions
+[blu3mo/Scrapbox-Duplicator](https://github.com/blu3mo/Scrapbox-Duplicator)をGithub Actionsで動かします。
+
 # scrapbox-duplicator
 
 Scrapboxの非公開・公開プロジェクトを分けて運用する際に面倒な「ページの転送」を自動で行います。

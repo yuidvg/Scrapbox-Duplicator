@@ -1,0 +1,18 @@
+name: run-duplicator
+run-name: Duplicate 
+on:
+  schedule:
+    - cron: '0 0/8 * * *'
+env:
+  SID: ${{ secrets.SID }}
+  SOURCE_PROJECT_NAME: ${{ secrets.SOURCE_PROJECT_NAME }}
+  DESTINATION_PROJECT_NAME: ${{ secrets.DESTINATION_PROJECT_NAME }}
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+      - run: deno run --allow-net=scrapbox.io --allow-read=./ --allow-env index.ts
+      - run: bats -v
