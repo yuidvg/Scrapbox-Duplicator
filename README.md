@@ -1,5 +1,6 @@
 # Scrapbox-Duplicator on GitHub Actions
-[blu3mo/Scrapbox-Duplicator](https://github.com/blu3mo/Scrapbox-Duplicator)をGithub Actionsで動かします。
+
+[blu3mo/Scrapbox-Duplicator](https://github.com/blu3mo/Scrapbox-Duplicator)をGithubActionsで動かします。
 
 # scrapbox-duplicator
 
