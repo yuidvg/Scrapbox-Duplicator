@@ -1,6 +1,7 @@
 # Scrapbox-Duplicator on GitHub Actions
 
 [blu3mo/Scrapbox-Duplicator](https://github.com/blu3mo/Scrapbox-Duplicator)をGithubActionsで動かします。
+以下は元ProjectのREADMEです。
 
 # scrapbox-duplicator
 
@@ -13,16 +14,6 @@ Scrapboxの非公開・公開プロジェクトを分けて運用する際に面
 - 転送元プロジェクトの内容をエクスポート
 - エクスポートされたjsonファイルから`[public.icon]`が含まれているページのみを抽出
 - 抽出されたページを転送先プロジェクトへインポート
-
-## スタートガイド
-
-以下の2ステップで実行可能です。
-
-1. 下のボタン（'Deploy to Heroku'）を押し、必要な情報を入力。
-2. Heroku
-   Schedulerで`deno run --allow-net=scrapbox.io --allow-read=./ --allow-env index.ts`を定期実行するように設定
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fblu3mo%2Fscrapbox-duplicator%2Ftree%2Fmaster)
 
 ### 必要なもの
 
@@ -44,7 +35,3 @@ Scrapboxの非公開・公開プロジェクトを分けて運用する際に面
 
 - Scrapbox
   Duplicatorは定期実行のタイミングまで待たないと転送されません。好きなタイミングで公開したい場合は、[このUserScript](https://scrapbox.io/blu3mo-public/%E3%83%9A%E3%83%BC%E3%82%B8%E8%BB%A2%E9%80%81%E3%81%99%E3%82%8B%E6%8B%A1%E5%BC%B5script)を一緒に使う事をお勧めします。
-
-## 謝辞
-
-- Scrapboxを開発しているNota, Inc.の皆さんに感謝します
