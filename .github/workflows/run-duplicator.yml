@@ -2,7 +2,8 @@ name: run-duplicator
 run-name: Duplicate 
 on:
   schedule:
-    - cron: '0 0/8 * * *'
+    - cron: '41 0/8 * * *'
+      # 混雑時間帯を避けた適当な時間
 jobs:
   duplicate:
     runs-on: ubuntu-latest
