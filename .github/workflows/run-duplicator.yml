@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 0/8 * * *'
 jobs:
-  check-bats-version:
+  duplicate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
