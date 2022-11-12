@@ -1,0 +1,9 @@
+#transfer Project pairs
+---
+srcPrjName: "diverge"
+dstPrjName: "diverge-public"
+duplComPages: true
+---
+srcPrjName: "yuidvg"
+dstPrjName: "yui-public"
+duplComPages: true

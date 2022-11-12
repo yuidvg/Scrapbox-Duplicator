@@ -1,4 +1,5 @@
 name: run-duplicator
+
 run-name: Duplicate 
 on:
   schedule:
@@ -12,7 +13,7 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           deno-version: vx.x.x
-      - run: deno run --allow-net=scrapbox.io --allow-read=./ --allow-env index.ts
+      - run: deno run --allow-net=scrapbox.io --allow-read=./ --allow-env mod.ts
         env:
           SID: ${{ secrets.SID }}
           SOURCE_PROJECT_NAME: ${{ secrets.SOURCE_PROJECT_NAME }}
