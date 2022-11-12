@@ -3,12 +3,6 @@ import { assertString, exportPages, importPages } from "./deps.ts";
 const sid = Deno.env.get("SID");
 assertString(sid);
 
-const srcPrjName = Deno.env.get("SOURCE_PROJECT_NAME"); //インポート元(本来はprivateプロジェクト)
-const dstPrjName = Deno.env.get("DESTINATION_PROJECT_NAME"); //インポート先(publicプロジェクト)
-const duplComPages = Deno.env.get("SHOULD_DUPLICATE_BY_DEFAULT") === "True";
-assertString(srcPrjName);
-assertString(dstPrjName);
-
 //Transfer a Project
 export default async function transferProject(
   srcPrjName: string,
