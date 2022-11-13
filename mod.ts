@@ -1,4 +1,4 @@
-import { parseAll, assertArray} from "./deps.ts";
+import { assertArray, parseAll } from "./deps.ts";
 import transferPages from "./transfer.ts";
 
 //make a interface for the yaml file to be parsed
