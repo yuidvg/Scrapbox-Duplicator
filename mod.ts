@@ -1,8 +1,7 @@
+import { parseAll, assertArray} from "./deps.ts";
 import transferPages from "./transfer.ts";
-import { parseAll } from "./deps.ts";
-import { assertArray } from "https://deno.land/x/unknownutil@v2.0.0/assert.ts";
 
-//make a type for the yaml file to be parsed
+//make a interface for the yaml file to be parsed
 interface TransferProjectPair {
   srcPrjName: string;
   dstPrjName: string;

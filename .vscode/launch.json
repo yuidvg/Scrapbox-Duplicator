@@ -7,7 +7,7 @@
     {
       "request": "launch",
       "name": "debug on deno",
-      "type": "pwa-node",
+      "type": "node",
       "program": "${workspaceFolder}/mod.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "/usr/local/bin/deno",

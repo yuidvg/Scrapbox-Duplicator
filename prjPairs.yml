@@ -6,4 +6,4 @@ duplComPages: true
 ---
 srcPrjName: "yuidvg"
 dstPrjName: "yui-public"
-duplComPages: true
+duplComPages: false
