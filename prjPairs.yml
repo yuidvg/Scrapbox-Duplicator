@@ -4,6 +4,6 @@ srcPrjName: "diverge"
 dstPrjName: "diverge-public"
 duplComPages: true
 ---
-srcPrjName: "yuidvg"
-dstPrjName: "yui-public"
+srcPrjName: "yuidvg-private"
+dstPrjName: "yuidvg"
 duplComPages: false
