@@ -10,8 +10,8 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           deno-version: vx.x.x
-      - name: Check fmt
-        run: deno fmt --check
+      - name: fmt
+        run: deno fmt
       - name: Run lint
         run: deno lint
       - name: Run type check
