@@ -43,16 +43,58 @@ if (importingPages.length === 0) {
   console.log(
     `Importing ${importingPages.length} pages to "/${importingProjectName}"...`,
   );
-  const result = await importPages(importingProjectName, {
-    pages: importingPages,
-  }, {
-    sid,
-  });
-  if (!result.ok) {
+
+  // Attempt import; if the upload is too large, split into smaller batches.
+  // This avoids server-side Multer "File too large" limits without needing server changes.
+  const maxBatchPagesEnv = Deno.env.get("IMPORT_MAX_BATCH_PAGES");
+  const maxBatchPages = maxBatchPagesEnv ? Number(maxBatchPagesEnv) : 150;
+
+  // Import a batch and handle "File too large" by splitting recursively.
+  const importBatch = async (
+    batch: typeof importingPages,
+    depth = 0,
+  ): Promise<void> => {
+    if (batch.length === 0) return;
+    const attemptLabel = `batch depth=${depth} size=${batch.length}`;
+    const result = await importPages(importingProjectName, { pages: batch }, {
+      sid,
+    });
+    if (result.ok) {
+      console.log(`Imported ${batch.length} pages (${attemptLabel}).`);
+      return;
+    }
+    const name = result.value?.name ?? "";
+    const message = result.value?.message ?? "";
+    // If server rejects due to size, split and retry recursively
+    if (/MulterError/i.test(name) || /File too large/i.test(message)) {
+      if (batch.length === 1) {
+        const error = new Error();
+        error.name = `${name || "MulterError"} when importing pages`;
+        error.message = `Single page still too large: ${
+          batch[0].title
+        }. ${message}`;
+        throw error;
+      }
+      const mid = Math.floor(batch.length / 2);
+      console.warn(
+        `Upload too large (${attemptLabel}). Splitting into ${mid} + ${
+          batch.length - mid
+        }...`,
+      );
+      await importBatch(batch.slice(0, mid), depth + 1);
+      await importBatch(batch.slice(mid), depth + 1);
+      return;
+    }
     const error = new Error();
-    error.name = `${result.value.name} when importing pages`;
-    error.message = result.value.message;
+    error.name = `${name} when importing pages`;
+    error.message = message;
     throw error;
+  };
+
+  // First, send in moderately sized batches to reduce retries.
+  for (let i = 0; i < importingPages.length; i += maxBatchPages) {
+    const batch = importingPages.slice(i, i + maxBatchPages);
+    await importBatch(batch);
   }
-  console.log(result.value);
+  console.log(`Done importing ${importingPages.length} pages.`);
 }

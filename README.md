@@ -42,12 +42,24 @@ Scrapboxの非公開・公開プロジェクトを分けて運用する際に面
    ScrapboxのSID（詳しくは[こちら](https://scrapbox.io/nishio/Scrapbox%E3%81%AEprivate%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AEAPI%E3%82%92%E5%8F%A9%E3%81%8F)）
 2. `SOURCE_PROJECT_NAME` 転送元のプロジェクト名
 3. `DESTINATION_PROJECT_NAME` 転送先のプロジェクト名
+4. `SHOULD_DUPLICATE_BY_DEFAULT`
+   `[public.icon]`が無いページも転送するか（`True`/`False`）
+5. 任意: `IMPORT_MAX_BATCH_PAGES` 一度にインポートする最大ページ数（デフォルト:
+   150）
 
 ## 注意事項
 
 - まともにテストしていないので、**自己責任で使用してください**。使用前にプロジェクトのバックアップ取得をオススメします。
 - SIDは漏れた場合にリセットする手段が無さそうなので、気をつけて扱ってください。サブアカウントのSID等を使用する事をオススメします。（詳しくは[こちら](https://scrapbox.io/nishio/Scrapbox%E3%81%AEprivate%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AEAPI%E3%82%92%E5%8F%A9%E3%81%8F)）
-- export APIは使用回数に制限があるので、定期実行は一日2~3回程度が良いと思います。
+- export
+  APIは使用回数に制限があるので、定期実行は一日2~3回程度が良いと思います。
+
+### 大きなプロジェクトのインポートについて
+
+Scrapbox側のインポートAPIにはアップロードサイズ制限があります（Multerの"File too
+large"）。
+このツールはインポート時に自動的にページ群を分割し、サイズ超過が発生した場合はさらに小さく分割して再試行します。
+必要に応じて `IMPORT_MAX_BATCH_PAGES` で初期の分割サイズを調整してください。
 
 ## その他
 
